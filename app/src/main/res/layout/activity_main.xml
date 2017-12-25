@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff">
+
+    <RadioGroup
+        android:id="@+id/main_group"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:background="#dcdcdc"
+        android:orientation="horizontal"
+        android:paddingBottom="2dp">
+
+        <RadioButton
+            android:id="@+id/radio_home"
+            style="@style/radio_button"
+            android:drawableTop="@drawable/home_bg_selector"
+            android:text="@string/main_one" />
+
+        <RadioButton
+            android:id="@+id/radio_second"
+            style="@style/radio_button"
+            android:drawableTop="@drawable/home_bg_selector"
+            android:text="@string/main_two" />
+
+        <RadioButton
+            android:id="@+id/radio_three"
+            style="@style/radio_button"
+            android:drawableTop="@drawable/home_bg_selector"
+            android:text="@string/main_three" />
+
+        <RadioButton
+            android:id="@+id/radio_my"
+            style="@style/radio_button"
+            android:drawableTop="@drawable/home_bg_selector"
+            android:text="@string/main_four" />
+    </RadioGroup>
+
+    <FrameLayout
+        android:id="@+id/frame"
+        style="@style/wh_full_style"
+        android:layout_above="@id/main_group"></FrameLayout>
+</RelativeLayout>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--<color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>-->
+
+    <!--App主题颜色-->
+    <color name="appColor">#dcdcdc</color>
+
+    <!--首页底部导航栏文字颜色-->
+    <color name="main_bottom_tv_press_color">#29d89d</color>
+    <color name="main_bottom_tv_unPress_color">#2c2c2c</color>
+
+    <color name="white">#ffffff</color>
+</resources>
