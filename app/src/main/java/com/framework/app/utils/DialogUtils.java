@@ -58,6 +58,7 @@ public class DialogUtils extends DialogFragment {
             return null;
         }
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
         //设置dialog动画
         dialog.getWindow().getAttributes().windowAnimations=R.style.CustomDialog;
         View view = inflater.inflate(R.layout.dialog_custom, container);
@@ -92,7 +93,7 @@ public class DialogUtils extends DialogFragment {
         if(TextUtils.isEmpty(mBuilder.message)){
             messageTv.setVisibility(View.INVISIBLE);
         }else {
-            messageTv.setText(mBuilder.title);
+            messageTv.setText(mBuilder.message);
         }
         if(TextUtils.isEmpty(mBuilder.negtive)){
             negativeTv.setText("取消");

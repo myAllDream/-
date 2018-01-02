@@ -48,10 +48,33 @@ public class LoginActivity extends BaseActivity implements LoginContract.View{
             }
         });
 
+        login_tv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDialogd();
+            }
+        });
+
 
 
     }
 
+    private void showDialogd() {
+        DialogUtils.getInstance(new DialogUtils.Builder().setTitle("成都方法大事发生的")
+        .setMessage("士大夫撒付水电费水电费水电费都舒服的沙发上发生的")
+        .setonClickButtonListener(new DialogUtils.onClickButtonListener() {
+            @Override
+            public void clickNegtive() {
+
+            }
+
+            @Override
+            public void clickPositive() {
+
+            }
+        })).showDialog(getFragmentManager());
+
+    }
 
 
     @Override
