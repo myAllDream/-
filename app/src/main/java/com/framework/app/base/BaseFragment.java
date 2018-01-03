@@ -1,5 +1,6 @@
 package com.framework.app.base;
 
+import android.app.Dialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -8,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
+import com.framework.app.utils.LoadingUtils;
 import com.framework.app.utils.StatusBar;
 
 import butterknife.ButterKnife;
@@ -20,6 +22,7 @@ import butterknife.Unbinder;
 public abstract class BaseFragment extends Fragment {
 
     private Unbinder mUnbinder;
+    private LoadingUtils mLoading;
 
     @Nullable
     @Override
@@ -52,6 +55,20 @@ public abstract class BaseFragment extends Fragment {
         super.onDestroyView();
         if(mUnbinder!=null){
             mUnbinder.unbind();
+        }
+    }
+
+    public Dialog showLoading(String message){
+        if(mLoading==null){
+            mLoading=new LoadingUtils(getActivity());
+        }
+        mLoading.show(message);
+        return mLoading;
+    }
+
+    public void dismissDialog(){
+        if(mLoading!=null && mLoading.isShowing()){
+            mLoading.dismiss();
         }
     }
 }

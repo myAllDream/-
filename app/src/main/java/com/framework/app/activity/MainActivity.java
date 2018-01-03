@@ -11,6 +11,8 @@ import com.framework.app.base.BaseActivity;
 import com.framework.app.config.Parms;
 import com.framework.app.contract.MainContract;
 import com.framework.app.presenter.MainPresenter;
+import com.framework.app.utils.LogUtil;
+
 import butterknife.BindView;
 
 public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedChangeListener {
@@ -74,4 +76,5 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
         }
         return super.onKeyDown(keyCode, event);
     }
+
 }

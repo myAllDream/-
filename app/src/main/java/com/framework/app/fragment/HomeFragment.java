@@ -4,12 +4,21 @@ import android.view.WindowManager;
 import android.widget.LinearLayout;
 import com.framework.app.R;
 import com.framework.app.base.BaseFragment;
+import com.framework.app.contract.HomeFragMentContract;
+import com.framework.app.presenter.HomeFragmentPresenter;
+import com.youth.banner.Banner;
+import butterknife.BindView;
 
 /**
  * Created by admin on 2017/12/18.
  */
 
-public class HomeFragment extends BaseFragment {
+public class HomeFragment extends BaseFragment implements HomeFragMentContract.View{
+
+    @BindView(R.id.banner)
+    Banner banner;
+
+    private HomeFragMentContract.Presenter mPresenter;
 
     public static HomeFragment getInStance() {
         HomeFragment fragment = new HomeFragment();
@@ -23,7 +32,8 @@ public class HomeFragment extends BaseFragment {
 
     @Override
     protected void initPresenter() {
-
+        mPresenter=new HomeFragmentPresenter(this);
+        mPresenter.startBanner();
     }
 
     @Override
@@ -35,5 +45,11 @@ public class HomeFragment extends BaseFragment {
     @Override
     public int getLayoutId() {
         return R.layout.fragment_home;
+    }
+
+
+    @Override
+    public Banner getBanner() {
+        return banner;
     }
 }

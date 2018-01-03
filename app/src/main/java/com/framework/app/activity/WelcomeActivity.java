@@ -27,7 +27,7 @@ public class WelcomeActivity extends AppCompatActivity {
 
         @Override
         public void onTick(long millisUntilFinished) {
-            timeTv.setText("还剩"+(millisUntilFinished/1000)+"s");
+            timeTv.setText("还剩"+(millisUntilFinished/1000-1)+"s");
         }
 
         @Override
