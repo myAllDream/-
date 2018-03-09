@@ -9,7 +9,7 @@ import android.util.Log;
 public class LogUtil {
     //日志打印控制开关
     private static final boolean isPrint = true;
-    private static final String TAG = "code";
+    private static final String TAG = "love";
 
     /**
      * 单一信息打印
