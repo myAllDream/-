@@ -8,19 +8,17 @@
 
     <TextView
         android:id="@+id/title"
-        android:text="dfsdfdfdfdffdffsdfsf"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
+        android:layout_marginTop="20dp"
         android:gravity="center"
         android:lines="1"
-        android:layout_marginTop="20dp"
         android:textColor="#3a3a3a"
         android:textSize="16sp" />
 
     <TextView
-        android:text="dsdfafdfa定时发的撒风"
         android:id="@+id/message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

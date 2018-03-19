@@ -1,24 +1,19 @@
 package com.framework.app.activity;
 
-import android.content.Intent;
 import android.graphics.Color;
-import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.framework.app.R;
 import com.framework.app.base.BaseActivity;
 import com.framework.app.contract.LoginContract;
-import com.framework.app.net.NetClient;
 import com.framework.app.utils.DialogUtils;
-import com.framework.app.utils.LogUtil;
-import com.framework.app.utils.ModifyTitleBarColor;
 import com.framework.app.utils.StatusBar;
 
 import butterknife.BindView;
 
 
-public class LoginActivity extends BaseActivity implements LoginContract.View{
+public class LoginActivity extends BaseActivity implements LoginContract.View {
 
     @BindView(R.id.top_ll)
     LinearLayout loginTop;
@@ -32,8 +27,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.View{
 
     @Override
     protected void initPresenter() {
-        StatusBar.setBarColor(this,loginTop, Color.parseColor("#ffffff"));
-        ModifyTitleBarColor.StatusBarLightMode(this);
+        StatusBar.setBarColor(this, loginTop, Color.parseColor("#999999"));
     }
 
     @Override
@@ -43,18 +37,18 @@ public class LoginActivity extends BaseActivity implements LoginContract.View{
 
     private void showDialogd() {
         DialogUtils.getInstance(new DialogUtils.Builder().setTitle("成都方法大事发生的")
-        .setMessage("士大夫撒付水电费水电费水电费都舒服的沙发上发生的")
-        .setonClickButtonListener(new DialogUtils.onClickButtonListener() {
-            @Override
-            public void clickNegtive() {
+                .setMessage("士大夫撒付水电费水电费水电费都舒服的沙发上发生的")
+                .setonClickButtonListener(new DialogUtils.onClickButtonListener() {
+                    @Override
+                    public void clickNegtive() {
 
-            }
+                    }
 
-            @Override
-            public void clickPositive() {
+                    @Override
+                    public void clickPositive() {
 
-            }
-        })).showDialog(getFragmentManager());
+                    }
+                })).showDialog(getFragmentManager());
 
     }
 

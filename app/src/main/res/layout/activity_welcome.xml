@@ -4,14 +4,14 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@mipmap/welcome"
-        android:scaleType="fitCenter"/>
+        android:scaleType="fitCenter"
+        android:visibility="gone" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/app_color"/>
+        android:background="@color/app_color" />
 </RelativeLayout>
