@@ -6,6 +6,8 @@ import android.support.v4.app.FragmentTransaction;
 
 import com.framework.app.R;
 import com.framework.app.config.Parms;
+import com.framework.app.fragment.AccountFragment;
+import com.framework.app.fragment.FinanceFragment;
 import com.framework.app.fragment.HomeFragment;
 import com.framework.app.fragment.MySelfFragment;
 
@@ -51,6 +53,10 @@ public class FragmentUtils {
         switch (tag) {
             case Parms.FragmentTag.HOME_FRAGMENT:
                 return HomeFragment.getInStance();
+            case Parms.FragmentTag.FINANCE_FRAGMENT:
+                return FinanceFragment.getInStance();
+            case Parms.FragmentTag.ACCOUNT_FRAGMENT:
+                return AccountFragment.getInStance();
             case Parms.FragmentTag.MY_FRAGMENT:
                 return MySelfFragment.getInStance();
         }

@@ -5,14 +5,13 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
+
 import com.framework.app.MyApp;
 import com.framework.app.R;
 import com.framework.app.base.BaseActivity;
 import com.framework.app.config.Parms;
 import com.framework.app.contract.MainContract;
-import com.framework.app.net.NetUtils;
 import com.framework.app.presenter.MainPresenter;
-import com.framework.app.utils.LogUtil;
 
 import butterknife.BindView;
 
@@ -32,7 +31,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
 
     @Override
     protected void initPresenter() {
-        mPresenter=new MainPresenter();
+        mPresenter = new MainPresenter();
     }
 
     @Override
@@ -53,17 +52,18 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
             case R.id.radio_home:
                 mPresenter.changeFragment(Parms.FragmentTag.HOME_FRAGMENT, getSupportFragmentManager());
                 break;
-            case R.id.radio_second:
-                mPresenter.changeFragment(Parms.FragmentTag.MY_FRAGMENT, getSupportFragmentManager());
+            case R.id.radio_finance:
+                mPresenter.changeFragment(Parms.FragmentTag.FINANCE_FRAGMENT, getSupportFragmentManager());
                 break;
-            case R.id.radio_three:
-                mPresenter.changeFragment(Parms.FragmentTag.HOME_FRAGMENT, getSupportFragmentManager());
+            case R.id.radio_account:
+                mPresenter.changeFragment(Parms.FragmentTag.ACCOUNT_FRAGMENT, getSupportFragmentManager());
                 break;
             case R.id.radio_my:
                 mPresenter.changeFragment(Parms.FragmentTag.MY_FRAGMENT, getSupportFragmentManager());
                 break;
         }
     }
+
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {

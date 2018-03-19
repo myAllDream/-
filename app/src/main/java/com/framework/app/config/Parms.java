@@ -14,6 +14,8 @@ public interface Parms {
     @StringDef(value = {FragmentTag.HOME_FRAGMENT,FragmentTag.MY_FRAGMENT})
     @interface FragmentTag{
         String HOME_FRAGMENT="HOME";
+        String FINANCE_FRAGMENT="FINANCE";
+        String ACCOUNT_FRAGMENT="ACCOUNT";
         String MY_FRAGMENT="MY";
     }
 

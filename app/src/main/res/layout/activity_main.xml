@@ -20,13 +20,13 @@
             android:text="@string/main_one" />
 
         <RadioButton
-            android:id="@+id/radio_second"
+            android:id="@+id/radio_finance"
             style="@style/radio_button"
             android:drawableTop="@drawable/finance_bg_selector"
             android:text="@string/main_two" />
 
         <RadioButton
-            android:id="@+id/radio_three"
+            android:id="@+id/radio_account"
             style="@style/radio_button"
             android:drawableTop="@drawable/account_bg_selector"
             android:text="@string/main_three" />

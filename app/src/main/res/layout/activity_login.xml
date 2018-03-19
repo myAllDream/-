@@ -5,13 +5,7 @@
     android:background="#ffffff"
     android:layout_height="match_parent">
 
-    <LinearLayout
-        android:id="@+id/login_top"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="1dp">
-
-    </LinearLayout>
+    <include layout="@layout/top_ll_view"/>
 
     <TextView
         android:layout_width="match_parent"

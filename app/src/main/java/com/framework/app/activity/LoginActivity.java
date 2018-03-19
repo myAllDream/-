@@ -1,5 +1,6 @@
 package com.framework.app.activity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -19,7 +20,7 @@ import butterknife.BindView;
 
 public class LoginActivity extends BaseActivity implements LoginContract.View{
 
-    @BindView(R.id.login_top)
+    @BindView(R.id.top_ll)
     LinearLayout loginTop;
     @BindView(R.id.login_tv)
     TextView login_tv;

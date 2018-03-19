@@ -1,6 +1,7 @@
 package com.framework.app.base;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -128,7 +129,8 @@ public abstract class BaseActivity extends AppCompatActivity {
                     @Override
                     public void clickPositive() {
                         //设置网络
-                        ToastUtils.show("设置网络");
+                        Intent intent = new Intent("android.settings.WIRELESS_SETTINGS");
+                        startActivity(intent);
                     }
                 })).showDialog(getFragmentManager());
     }

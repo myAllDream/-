@@ -5,23 +5,13 @@
     android:layout_height="match_parent">
 
     <include layout="@layout/top_ll_view"/>
-
     <TextView
         android:id="@+id/tv_my"
         android:background="#ff0000"
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:text="我的"
+        android:text="理财"
         android:gravity="center"/>
 
-    <TextView
-        android:layout_marginTop="100dp"
-        android:id="@+id/login"
-        android:text="调转"
-        android:textSize="16sp"
-        android:gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:background="?android:attr/selectableItemBackground"/>
 
 </LinearLayout>
