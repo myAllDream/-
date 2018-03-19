@@ -1,10 +1,14 @@
 package com.framework.app.fragment;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.widget.LinearLayout;
+import android.widget.TextView;
+
 import com.framework.app.R;
 import com.framework.app.activity.LoginActivity;
 import com.framework.app.base.BaseFragment;
+import com.framework.app.utils.StatusBar;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -17,6 +21,8 @@ public class MySelfFragment extends BaseFragment {
 
     @BindView(R.id.top_ll)
     LinearLayout view;
+    @BindView(R.id.center_title)
+    TextView title;
 
     public static MySelfFragment getInStance() {
         MySelfFragment fragment = new MySelfFragment();
@@ -35,7 +41,7 @@ public class MySelfFragment extends BaseFragment {
 
     @Override
     protected void initData() {
-
+        title.setText("我的");
     }
 
     @Override

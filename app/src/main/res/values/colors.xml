@@ -12,4 +12,8 @@
     <color name="main_bottom_tv_unPress_color">#2c2c2c</color>
 
     <color name="white">#ffffff</color>
+
+    <!--状态栏的颜色-->
+    <color name="blue">#3091D8</color>
+
 </resources>

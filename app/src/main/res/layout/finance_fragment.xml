@@ -5,13 +5,7 @@
     android:layout_height="match_parent">
 
     <include layout="@layout/top_ll_view"/>
-    <TextView
-        android:id="@+id/tv_my"
-        android:background="#ff0000"
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:text="理财"
-        android:gravity="center"/>
+    <include layout="@layout/main_head_title"/>
 
 
 </LinearLayout>

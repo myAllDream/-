@@ -1,6 +1,7 @@
 package com.framework.app.fragment;
 
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.framework.app.R;
 import com.framework.app.base.BaseFragment;
@@ -15,6 +16,8 @@ public class FinanceFragment extends BaseFragment {
 
     @BindView(R.id.top_ll)
     LinearLayout view;
+    @BindView(R.id.center_title)
+    TextView title;
 
     public static FinanceFragment getInStance() {
         FinanceFragment fragment = new FinanceFragment();
@@ -33,7 +36,7 @@ public class FinanceFragment extends BaseFragment {
 
     @Override
     protected void initData() {
-
+        title.setText("理财");
     }
 
     @Override

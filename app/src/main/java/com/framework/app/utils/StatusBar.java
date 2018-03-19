@@ -6,6 +6,8 @@ import android.os.Build;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 
+import com.framework.app.R;
+
 /**
  * 动态设置沉浸式状态栏，通过添加占位状态栏
  */
@@ -23,7 +25,7 @@ public class StatusBar {
             int height=getBarHight(activity);
             //动态的设置隐藏布局的高度
             LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) bar.getLayoutParams();
-            bar.setBackgroundColor(Color.parseColor("#ff0000"));
+            bar.setBackgroundColor(activity.getResources().getColor(R.color.blue));
             params.height = height;
             bar.setLayoutParams(params);
         }

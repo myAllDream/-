@@ -32,7 +32,7 @@ public class MyApp extends Application {
     @Override
     public void onLowMemory() {
         super.onLowMemory();
-        //NetStateReceiver.unRegisterNetworkStateReceiver(this);
+
     }
 
     public void removeAll(){
