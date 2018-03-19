@@ -3,6 +3,8 @@ package com.framework.app;
 import android.app.Activity;
 import android.app.Application;
 
+import com.framework.app.net.NetStateReceiver;
+
 import java.util.ArrayList;
 
 /**
@@ -18,11 +20,19 @@ public class MyApp extends Application {
         super.onCreate();
         activityList = new ArrayList<>();
         application = this;
+        /*开启网络广播监听*/
+        NetStateReceiver.registerNetworkStateReceiver(this);
 
     }
 
     public static MyApp getInstance() {
         return application;
+    }
+
+    @Override
+    public void onLowMemory() {
+        super.onLowMemory();
+        //NetStateReceiver.unRegisterNetworkStateReceiver(this);
     }
 
     public void removeAll(){

@@ -5,7 +5,7 @@
     <color name="colorAccent">#FF4081</color>-->
 
     <!--App主题颜色-->
-    <color name="appColor">#dcdcdc</color>
+    <color name="app_color">#FFA700</color>
 
     <!--首页底部导航栏文字颜色-->
     <color name="main_bottom_tv_press_color">#29d89d</color>

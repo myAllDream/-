@@ -10,6 +10,7 @@ import com.framework.app.R;
 import com.framework.app.base.BaseActivity;
 import com.framework.app.config.Parms;
 import com.framework.app.contract.MainContract;
+import com.framework.app.net.NetUtils;
 import com.framework.app.presenter.MainPresenter;
 import com.framework.app.utils.LogUtil;
 
@@ -44,6 +45,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
     protected LinearLayout getTopView() {
         return null;
     }
+
 
     @Override
     public void onCheckedChanged(RadioGroup group, int checkedId) {

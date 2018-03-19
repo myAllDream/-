@@ -2,6 +2,8 @@ package com.framework.app.net;
 
 import android.util.Log;
 
+import com.framework.app.utils.LogUtil;
+
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.charset.UnsupportedCharsetException;
@@ -39,7 +41,7 @@ public class LoggingInterceptor implements Interceptor {
             body = buffer.readString(charset);
         }
 
-
+        LogUtil.i("请求："+"\n url" + request.url()+ "\n body   " + body);
 
         Response response = chain.proceed(request);
         ResponseBody responseBody = response.body();
@@ -57,7 +59,7 @@ public class LoggingInterceptor implements Interceptor {
             }
         }
         rBody = buffer.clone().readString(charset);
-        Log.i("codeTest","收到响应\n"+response.request().url()+"\n"+rBody);
+        LogUtil.i("收到响应\n"+response.request().url()+"\n"+rBody);
         return response;
     }
 }

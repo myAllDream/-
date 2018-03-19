@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_alignParentBottom="true"
-        android:background="#dcdcdc"
+        android:background="#f8f8f8"
         android:orientation="horizontal"
         android:paddingBottom="2dp">
 
@@ -22,19 +22,19 @@
         <RadioButton
             android:id="@+id/radio_second"
             style="@style/radio_button"
-            android:drawableTop="@drawable/home_bg_selector"
+            android:drawableTop="@drawable/finance_bg_selector"
             android:text="@string/main_two" />
 
         <RadioButton
             android:id="@+id/radio_three"
             style="@style/radio_button"
-            android:drawableTop="@drawable/home_bg_selector"
+            android:drawableTop="@drawable/account_bg_selector"
             android:text="@string/main_three" />
 
         <RadioButton
             android:id="@+id/radio_my"
             style="@style/radio_button"
-            android:drawableTop="@drawable/home_bg_selector"
+            android:drawableTop="@drawable/myself_bg_selector"
             android:text="@string/main_four" />
     </RadioGroup>
 

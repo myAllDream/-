@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">框架</string>
 
-    <string name="main_one">生活</string>
-    <string name="main_two">社会</string>
-    <string name="main_three">人生</string>
-    <string name="main_four">拼搏</string>
+    <string name="main_one">首页</string>
+    <string name="main_two">理财</string>
+    <string name="main_three">账本</string>
+    <string name="main_four">我的</string>
 </resources>
