@@ -6,6 +6,8 @@
 
     <!--App主题颜色-->
     <color name="app_color">#FFA700</color>
+    <!--页面背景颜色-->
+    <color name="app_bg">#ffffff</color>
 
     <!--首页底部导航栏文字颜色-->
     <color name="main_bottom_tv_press_color">#29d89d</color>

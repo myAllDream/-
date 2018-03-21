@@ -1,15 +1,21 @@
 package com.framework.app.fragment;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.EditText;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.framework.app.R;
+import com.framework.app.activity.ProductDetailActivity;
 import com.framework.app.base.BaseFragment;
-import com.framework.app.utils.LogUtil;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+import butterknife.Unbinder;
 
 /**
  * Created by admin on 2018/3/19.
@@ -47,4 +53,9 @@ public class AccountFragment extends BaseFragment {
         return R.layout.account_fragment;
     }
 
+
+    @OnClick(R.id.tv)
+    public void onViewClicked() {
+        startActivity(new Intent(getActivity(), ProductDetailActivity.class));
+    }
 }

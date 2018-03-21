@@ -9,4 +9,11 @@
     <include layout="@layout/main_head_title" />
 
 
+    <TextView
+        android:id="@+id/tv"
+        android:background="?android:attr/selectableItemBackground"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="详情"
+        android:gravity="center"/>
 </LinearLayout>

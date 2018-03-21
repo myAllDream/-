@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_bg"
+    android:orientation="vertical">
+
+    <include layout="@layout/top_ll_view" />
+
+
+    <com.framework.app.view.PullUpToLoadMore
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.framework.app.view.MyScrollView
+            android:layout_width="match_parent"
+            android:fillViewport="true"
+            android:layout_height="match_parent">
+
+            <include layout="@layout/include_top" />
+
+        </com.framework.app.view.MyScrollView>
+
+        <com.framework.app.view.MyScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+
+
+            <include layout="@layout/include_bottom" />
+
+
+        </com.framework.app.view.MyScrollView>
+    </com.framework.app.view.PullUpToLoadMore>
+
+
+</LinearLayout>
