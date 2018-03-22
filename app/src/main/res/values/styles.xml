@@ -8,7 +8,7 @@
         <item name="colorAccent">@color/colorAccent</item>-->
     </style>
 
-    <style name="AppTheme" parent="BaseTheme"/>
+    <style name="AppTheme" parent="BaseTheme" />
 
     <style name="welcomeStyle" parent="BaseTheme">
         <item name="android:windowFullscreen">true</item>
@@ -20,6 +20,10 @@
         <item name="android:layout_height">match_parent</item>
     </style>
 
+    <style name="exist_menu_animstyle">
+        <item name="android:windowEnterAnimation">@anim/bottom_in</item>
+        <item name="android:windowExitAnimation">@anim/bottom_out</item>
+    </style>
 
     <style name="radio_button">
         <item name="android:paddingBottom">2dp</item>

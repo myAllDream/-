@@ -16,4 +16,12 @@
         android:layout_height="50dp"
         android:text="详情"
         android:gravity="center"/>
+
+    <TextView
+        android:id="@+id/pwd"
+        android:background="?android:attr/selectableItemBackground"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="密码"
+        android:gravity="center"/>
 </LinearLayout>

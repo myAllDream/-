@@ -17,8 +17,6 @@ public class NetClient {
     private static NetClient sClient;
     private static final String BASE_URL = "http://192.168.10.243:8080/";
     private Retrofit mRetrofit;
-    //日志打印开关
-    private boolean isLog = true;
 
     private NetClient() {
         mRetrofit = new Retrofit.Builder()
@@ -51,9 +49,8 @@ public class NetClient {
                 .readTimeout(TIME_OUT, TimeUnit.SECONDS);
 
         okHttpClient.addInterceptor(new HeaderInterceptor());
-        if (isLog) {
-            okHttpClient.addInterceptor(new LoggingInterceptor());
-        }
+        okHttpClient.addInterceptor(new LoggingInterceptor());
+
         return okHttpClient.build();
     }
 
