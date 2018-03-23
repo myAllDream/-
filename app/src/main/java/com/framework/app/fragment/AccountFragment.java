@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.framework.app.R;
+import com.framework.app.activity.AddBillActivity;
 import com.framework.app.activity.ProductDetailActivity;
 import com.framework.app.base.BaseFragment;
 import com.framework.app.keyboard.Callback;
@@ -60,7 +61,7 @@ public class AccountFragment extends BaseFragment {
     }
 
 
-    @OnClick({R.id.tv, R.id.pwd})
+    @OnClick({R.id.tv, R.id.pwd,R.id.lan})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv:
@@ -68,6 +69,9 @@ public class AccountFragment extends BaseFragment {
                 break;
             case R.id.pwd:
                 show();
+                break;
+            case R.id.lan:
+                startActivity(new Intent(getActivity(), AddBillActivity.class));
                 break;
         }
 

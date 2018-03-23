@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@color/white"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/bill_logo"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        />
+    <TextView
+        android:id="@+id/bill_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:lines="1"
+        android:ellipsize="end"
+        android:textColor="#3a3a3a"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@id/bill_logo"
+        android:layout_marginLeft="20dp"/>
+
+    <View
+        android:layout_below="@id/bill_logo"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginRight="12dp"
+        android:layout_marginLeft="12dp"
+        android:background="#DADADA"/>
+</RelativeLayout>

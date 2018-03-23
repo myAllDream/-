@@ -15,7 +15,8 @@ public class NetClient {
 
     private final long TIME_OUT = 10 * 1000;
     private static NetClient sClient;
-    private static final String BASE_URL = "http://192.168.10.243:8080/";
+    private static final String BASE_URL = "https://www.apiopen.top/";
+
     private Retrofit mRetrofit;
 
     private NetClient() {
@@ -48,7 +49,7 @@ public class NetClient {
         okHttpClient.connectTimeout(TIME_OUT, TimeUnit.SECONDS)
                 .readTimeout(TIME_OUT, TimeUnit.SECONDS);
 
-        okHttpClient.addInterceptor(new HeaderInterceptor());
+        //okHttpClient.addInterceptor(new HeaderInterceptor());
         okHttpClient.addInterceptor(new LoggingInterceptor());
 
         return okHttpClient.build();

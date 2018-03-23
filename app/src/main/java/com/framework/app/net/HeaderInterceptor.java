@@ -1,10 +1,13 @@
 package com.framework.app.net;
 
 
+import com.framework.app.MyApp;
+
 import java.io.IOException;
 import java.nio.charset.Charset;
 
 import okhttp3.Interceptor;
+import okhttp3.Request;
 import okhttp3.Response;
 
 /**
@@ -17,17 +20,15 @@ public class HeaderInterceptor implements Interceptor {
 
     @Override
     public Response intercept(Chain chain) throws IOException {
-        /*Request request = chain.request()
+        Request request = chain.request()
                 .newBuilder()
-                .addHeader("softVersion", MyApp.getInstance().getAppVersionName())//客户端版本号
-                .addHeader("systemVersion", DeviceUtil.getSystemVersion())//设备系统版本号
-                .addHeader("deviceId", DeviceUtil.getDeviceId(MyApp.getInstance()))//设备ID
-                .addHeader("sign", "")//签名
-                .addHeader("sid", Constant.Toke)//登录时返回的session id
-                //.addHeader("sid", "f145c592-4b75-4868-8607-c3101afe9449")//这个是测试session
+                .addHeader("softVersion", "1.0.0")//客户端版本号
+                .addHeader("systemVersion", "7.1.2")//设备系统版本号
+                .addHeader("deviceId", "864698031881978")//设备ID
+                .addHeader("sign", "617e10c71e8e2ef1586e3e6eda507cb1")//签名
+                .addHeader("sid", "6babba71-0190-4e97-bf7e-a81b63aff15c")//登录时返回的session id
                 .addHeader("source", "android")
                 .build();
-        return chain.proceed(request);*/
-        return chain.proceed(chain.request());
+        return chain.proceed(request);
     }
 }
