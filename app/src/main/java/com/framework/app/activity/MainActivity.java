@@ -1,5 +1,9 @@
 package com.framework.app.activity;
 
+import android.Manifest;
+import android.location.Location;
+import android.os.Bundle;
+import android.support.annotation.RequiresPermission;
 import android.view.KeyEvent;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
@@ -12,6 +16,8 @@ import com.framework.app.base.BaseActivity;
 import com.framework.app.config.Parms;
 import com.framework.app.contract.MainContract;
 import com.framework.app.presenter.MainPresenter;
+import com.framework.app.utils.LocationUtils;
+import com.framework.app.utils.LogUtil;
 
 import butterknife.BindView;
 
@@ -38,6 +44,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
     protected void initData() {
         mainGroup.setOnCheckedChangeListener(this);
         radioHome.setChecked(true);
+
     }
 
     @Override

@@ -39,9 +39,7 @@ public class MyScrollView extends ScrollView {
                     int contentHeight = getChildAt(0).getHeight();
                     int scrollHeight = getHeight();
                     int scrollY = getScrollY();
-                    LogUtil.i("------" + contentHeight + "------" + scrollHeight + "------" + scrollY);
                     mListener.onScroll(scrollY);
-
                     if (scrollY + scrollHeight >= contentHeight || contentHeight <= scrollHeight) {
                         mListener.onScrollToBottom();
                     } else {
