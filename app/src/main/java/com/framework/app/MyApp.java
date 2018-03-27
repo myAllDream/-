@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Application;
 
 import com.framework.app.net.NetStateReceiver;
+import com.framework.app.utils.LogUtil;
 
 import java.util.ArrayList;
 
@@ -32,7 +33,6 @@ public class MyApp extends Application {
     @Override
     public void onLowMemory() {
         super.onLowMemory();
-
     }
 
     public void removeAll(){

@@ -1,18 +1,14 @@
 package com.framework.app.fragment;
 
 import android.content.Intent;
-import android.os.Bundle;
-import android.os.Handler;
-import android.telecom.Call;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.framework.app.R;
 import com.framework.app.activity.AddBillActivity;
+import com.framework.app.activity.MyRecycleviewActivity;
 import com.framework.app.activity.ProductDetailActivity;
 import com.framework.app.base.BaseFragment;
 import com.framework.app.keyboard.Callback;
@@ -20,9 +16,7 @@ import com.framework.app.keyboard.PasswordKeypad;
 import com.framework.app.utils.LogUtil;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
-import butterknife.Unbinder;
 
 /**
  * Created by admin on 2018/3/19.
@@ -61,7 +55,7 @@ public class AccountFragment extends BaseFragment {
     }
 
 
-    @OnClick({R.id.tv, R.id.pwd,R.id.lan})
+    @OnClick({R.id.tv, R.id.pwd,R.id.lan,R.id.fresh})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv:
@@ -72,6 +66,9 @@ public class AccountFragment extends BaseFragment {
                 break;
             case R.id.lan:
                 startActivity(new Intent(getActivity(), AddBillActivity.class));
+                break;
+            case R.id.fresh:
+                startActivity(new Intent(getActivity(), MyRecycleviewActivity.class));
                 break;
         }
 

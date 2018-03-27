@@ -8,7 +8,6 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
-
     <application
         android:name=".MyApp"
         android:allowBackup="false"
@@ -30,8 +29,9 @@
             android:name=".activity.MainActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".activity.LoginActivity" />
-        <activity android:name=".activity.ProductDetailActivity"></activity>
-        <activity android:name=".activity.AddBillActivity"></activity>
+        <activity android:name=".activity.ProductDetailActivity" />
+        <activity android:name=".activity.AddBillActivity" />
+        <activity android:name=".activity.MyRecycleviewActivity"></activity>
     </application>
 
 </manifest>

@@ -79,7 +79,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
                 exitTime = System.currentTimeMillis();
             } else {
                 MyApp.getInstance().removeAll();
-                finish();
+
             }
             return true;
         }
