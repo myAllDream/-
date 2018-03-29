@@ -3,6 +3,7 @@ package com.framework.app.activity;
 import android.os.Handler;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
@@ -11,7 +12,9 @@ import com.framework.app.adapter.PersonViewHolder;
 import com.framework.app.base.BaseActivity;
 import com.framework.app.bean.DataProvider;
 import com.framework.app.bean.Person;
+import com.framework.app.contract.HomeFragMentContract;
 import com.framework.app.pulltorefresh.BaseViewHolder;
+import com.framework.app.pulltorefresh.DefaultEventDelegate;
 import com.framework.app.pulltorefresh.RecyclerArrayAdapter;
 import com.framework.app.pulltorefresh.RecycleviewRefreshView;
 
@@ -40,7 +43,7 @@ public class MyRecycleviewActivity extends BaseActivity implements SwipeRefreshL
 
     @Override
     protected void initData() {
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        final LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
 
@@ -53,6 +56,13 @@ public class MyRecycleviewActivity extends BaseActivity implements SwipeRefreshL
         adapter.setMore(R.layout.view_more, new RecyclerArrayAdapter.OnLoadMoreListener() {
             @Override
             public void onLoadMore() {
+                if(recyclerView.getSwipeToRefresh().isRefreshing()){
+                    layoutManager.findViewByPosition(adapter.getItemCount()-1).setVisibility(View.GONE);
+                    return;
+                }else{
+                    layoutManager.findViewByPosition(adapter.getItemCount()-1).setVisibility(View.VISIBLE);
+
+                }
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -88,6 +98,13 @@ public class MyRecycleviewActivity extends BaseActivity implements SwipeRefreshL
         adapter.setError(R.layout.view_error, new RecyclerArrayAdapter.OnErrorListener() {
             @Override
             public void onErrorShow() {
+                if(recyclerView.getSwipeToRefresh().isRefreshing()){
+                    layoutManager.findViewByPosition(adapter.getItemCount()-1).setVisibility(View.GONE);
+                    return;
+                }else{
+                    layoutManager.findViewByPosition(adapter.getItemCount()-1).setVisibility(View.VISIBLE);
+
+                }
                 adapter.resumeMore();
             }
 

@@ -23,6 +23,7 @@ abstract public class RecyclerArrayAdapter<T> extends RecyclerView.Adapter<BaseV
     private EventDelegateAble mEventDelegate;
     private ArrayList<ItemView> headers = new ArrayList<>();
     private ArrayList<ItemView> footers = new ArrayList<>();
+    private ArrayList<View> footView=new ArrayList<>();
     private OnItemClickListener mItemClickListener;
     private OnItemLongClickListener mItemLongClickListener;
     private final Object mLock = new Object();
@@ -544,6 +545,7 @@ abstract public class RecyclerArrayAdapter<T> extends RecyclerView.Adapter<BaseV
         for (ItemView footerView : footers) {
             if (footerView.hashCode() == viewType) {
                 View view = footerView.onCreateView(parent);
+                footView.add(view);
                 StaggeredGridLayoutManager.LayoutParams layoutParams;
                 if (view.getLayoutParams() != null) {
                     layoutParams = new StaggeredGridLayoutManager.LayoutParams(view.getLayoutParams());

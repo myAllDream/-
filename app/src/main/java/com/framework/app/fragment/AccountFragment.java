@@ -5,7 +5,6 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.framework.app.R;
 import com.framework.app.activity.AddBillActivity;
 import com.framework.app.activity.MyRecycleviewActivity;
@@ -13,7 +12,7 @@ import com.framework.app.activity.ProductDetailActivity;
 import com.framework.app.base.BaseFragment;
 import com.framework.app.keyboard.Callback;
 import com.framework.app.keyboard.PasswordKeypad;
-import com.framework.app.utils.LogUtil;
+import com.framework.app.utils.ToastUtils;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -88,7 +87,7 @@ public class AccountFragment extends BaseFragment {
 
             @Override
             public void onInputCompleted(CharSequence password) {
-                LogUtil.i("------"+password.toString());
+                ToastUtils.show(password.toString());
                 if ("123456".equals(password.toString())) {
                     mKeypad.setPasswordState(true);
                     state = false;
