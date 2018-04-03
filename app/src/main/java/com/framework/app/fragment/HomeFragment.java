@@ -8,6 +8,7 @@ import com.framework.app.contract.HomeFragMentContract;
 import com.framework.app.presenter.HomeFragmentPresenter;
 import com.youth.banner.Banner;
 import butterknife.BindView;
+import io.reactivex.disposables.Disposable;
 
 /**
  * Created by admin on 2017/12/18.
@@ -52,4 +53,5 @@ public class HomeFragment extends BaseFragment implements HomeFragMentContract.V
     public Banner getBanner() {
         return banner;
     }
+
 }

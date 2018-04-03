@@ -61,9 +61,6 @@ public abstract class SimpleSubscriber<T> implements Observer<T> {
     @Override
     public void onNext(T t) {
 
-        if (!mDisposable.isDisposed()) {
-            mDisposable.dispose();
-        }
         if (mSwipeRefreshLayout != null) {
             mSwipeRefreshLayout.setRefreshing(false);
         }
@@ -99,10 +96,6 @@ public abstract class SimpleSubscriber<T> implements Observer<T> {
         if (mBaseView != null) {
             mBaseView.dismissDialog();
         }
-        if (!mDisposable.isDisposed()) {
-            mDisposable.dispose();
-        }
-
         if (t instanceof SocketTimeoutException || t instanceof InterruptedIOException) {
             error("链接超时");
         } else if (t instanceof UnknownHostException || t instanceof HttpException || t instanceof ConnectException) {
@@ -112,11 +105,16 @@ public abstract class SimpleSubscriber<T> implements Observer<T> {
         } else {
             error(t.getMessage());
         }
+        if (mDisposable != null &&!mDisposable.isDisposed()) {
+            mDisposable.dispose();
+        }
     }
 
     @Override
     public void onComplete() {
-
+        if (mDisposable != null && !mDisposable.isDisposed()) {
+            mDisposable.dispose();
+        }
     }
 
     public abstract void success(T t);

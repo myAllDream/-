@@ -46,6 +46,8 @@ public class AccountFragment extends BaseFragment {
     @Override
     protected void initData() {
         title.setText("账单");
+
+
     }
 
     @Override

@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import com.framework.app.R;
+import com.framework.app.activity.AddBillActivity;
 import com.framework.app.adapter.AddBillRecycleAdapter;
 import com.framework.app.base.BaseFragment;
 import com.framework.app.base.BaseLazyFragment;
@@ -52,7 +53,7 @@ public class AddBillFragment extends BaseLazyFragment implements AddBillFragment
 
     @Override
     protected void initPresenter() {
-        mPresenter = new AddBillPresenter(this);
+        mPresenter = new AddBillPresenter((AddBillActivity) getActivity(),this);
     }
 
     @Override
@@ -65,6 +66,7 @@ public class AddBillFragment extends BaseLazyFragment implements AddBillFragment
         addBillRecy.setLayoutManager(manager);
         mAdapter = new AddBillRecycleAdapter(getActivity(), data);
         addBillRecy.setAdapter(mAdapter);
+
     }
 
     @Override
@@ -81,6 +83,7 @@ public class AddBillFragment extends BaseLazyFragment implements AddBillFragment
             mPresenter.getPlatforms("");
         }
     }
+
 
     @Override
     public void getPlatformsSuccess(PlatformBean platformBean) {
@@ -102,9 +105,7 @@ public class AddBillFragment extends BaseLazyFragment implements AddBillFragment
     @Override
     public void onResume() {
         super.onResume();
-
-
-
-
     }
+
+
 }

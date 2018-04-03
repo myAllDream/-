@@ -1,9 +1,11 @@
 package com.framework.app.base;
 
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +16,8 @@ import com.framework.app.utils.StatusBar;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
 
 /**
  * Created by admin on 2017/12/20.
@@ -23,6 +27,7 @@ public abstract class BaseFragment extends Fragment {
 
     private Unbinder mUnbinder;
     private LoadingUtils mLoading;
+    private CompositeDisposable mDisposable;
 
     @Nullable
     @Override
@@ -37,6 +42,9 @@ public abstract class BaseFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         if(getLinearLayout()!=null){
             StatusBar.init(getActivity(),getLinearLayout());
+        }
+        if(mDisposable==null){
+            mDisposable=new CompositeDisposable();
         }
         initData();
         initPresenter();
@@ -61,6 +69,15 @@ public abstract class BaseFragment extends Fragment {
     public Dialog showLoading(String message){
         if(mLoading==null){
             mLoading=new LoadingUtils(getActivity());
+            mLoading.setOnKeyListener(new DialogInterface.OnKeyListener() {
+                @Override
+                public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
+                    if(keyCode==KeyEvent.KEYCODE_BACK){
+                        mDisposable.dispose();
+                    }
+                    return false;
+                }
+            });
         }
         mLoading.show(message);
         return mLoading;
@@ -70,5 +87,9 @@ public abstract class BaseFragment extends Fragment {
         if(mLoading!=null && mLoading.isShowing()){
             mLoading.dismiss();
         }
+    }
+
+    public void addDisposed(Disposable disposable){
+        mDisposable.add(disposable);
     }
 }

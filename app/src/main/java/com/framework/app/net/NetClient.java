@@ -13,7 +13,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class NetClient {
 
-    private final long TIME_OUT = 10 * 1000;
+    private final long TIME_OUT = 5 * 1000;
     private static NetClient sClient;
     private static final String BASE_URL = "https://www.apiopen.top/";
 

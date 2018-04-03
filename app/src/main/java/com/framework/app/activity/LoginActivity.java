@@ -11,6 +11,7 @@ import com.framework.app.utils.DialogUtils;
 import com.framework.app.utils.StatusBar;
 
 import butterknife.BindView;
+import io.reactivex.disposables.Disposable;
 
 
 public class LoginActivity extends BaseActivity implements LoginContract.View {

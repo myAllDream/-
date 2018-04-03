@@ -1,10 +1,12 @@
 package com.framework.app.base;
 
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.view.KeyEvent;
 import android.widget.LinearLayout;
 
 import com.framework.app.MyApp;
@@ -13,11 +15,14 @@ import com.framework.app.net.NetStateReceiver;
 import com.framework.app.net.NetUtils;
 import com.framework.app.utils.DialogUtils;
 import com.framework.app.utils.LoadingUtils;
+import com.framework.app.utils.LogUtil;
 import com.framework.app.utils.StatusBar;
 import com.framework.app.utils.ToastUtils;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
 import okhttp3.Call;
 
 /**
@@ -26,11 +31,12 @@ import okhttp3.Call;
 
 public abstract class BaseActivity extends AppCompatActivity {
     private Unbinder unbinder;
-    private LoadingUtils mLoading;
+    public LoadingUtils mLoading;
     /**
      * 网络观察者
      */
     protected NetChangeObserver mNetChangeObserver = null;
+    private CompositeDisposable mCompositeDisposable;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -40,6 +46,9 @@ public abstract class BaseActivity extends AppCompatActivity {
         unbinder = ButterKnife.bind(this);
         if (getTopView() != null) {
             StatusBar.init(this, getTopView());
+        }
+        if(mCompositeDisposable==null){
+            mCompositeDisposable=new CompositeDisposable();
         }
         // 网络改变的一个回掉类
         mNetChangeObserver = new NetChangeObserver() {
@@ -139,6 +148,15 @@ public abstract class BaseActivity extends AppCompatActivity {
     public Dialog showLoading(String message){
         if(mLoading==null){
             mLoading=new LoadingUtils(this);
+            mLoading.setOnKeyListener(new DialogInterface.OnKeyListener() {
+                @Override
+                public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
+                    if(keyCode==KeyEvent.KEYCODE_BACK){
+                        mCompositeDisposable.dispose();
+                    }
+                    return false;
+                }
+            });
         }
         mLoading.show(message);
         return mLoading;
@@ -150,5 +168,10 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
     }
 
+    public void addDisposed(Disposable disposable){
+        if(mCompositeDisposable!=null){
+            mCompositeDisposable.add(disposable);
+        }
+    }
 
 }
