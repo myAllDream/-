@@ -8,6 +8,8 @@ import android.widget.TextView;
 import com.framework.app.R;
 import com.framework.app.activity.LoginActivity;
 import com.framework.app.base.BaseFragment;
+import com.framework.app.base.BasePresenter;
+import com.framework.app.base.BaseView;
 import com.framework.app.utils.StatusBar;
 
 import butterknife.BindView;
@@ -17,7 +19,7 @@ import butterknife.OnClick;
  * Created by admin on 2017/12/18.
  */
 
-public class MySelfFragment extends BaseFragment {
+public class MySelfFragment extends BaseFragment<BaseView,BasePresenter<BaseView>> {
 
     @BindView(R.id.top_ll)
     LinearLayout view;
@@ -30,14 +32,15 @@ public class MySelfFragment extends BaseFragment {
     }
 
     @Override
+    protected BasePresenter<BaseView> creatPresenter() {
+        return null;
+    }
+
+    @Override
     protected LinearLayout getLinearLayout() {
         return view;
     }
 
-    @Override
-    protected void initPresenter() {
-
-    }
 
     @Override
     protected void initData() {

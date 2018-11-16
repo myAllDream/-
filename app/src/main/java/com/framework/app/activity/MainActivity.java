@@ -1,9 +1,5 @@
 package com.framework.app.activity;
 
-import android.Manifest;
-import android.location.Location;
-import android.os.Bundle;
-import android.support.annotation.RequiresPermission;
 import android.view.KeyEvent;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
@@ -13,32 +9,30 @@ import android.widget.Toast;
 import com.framework.app.MyApp;
 import com.framework.app.R;
 import com.framework.app.base.BaseActivity;
+import com.framework.app.base.BaseView;
 import com.framework.app.config.Parms;
-import com.framework.app.contract.MainContract;
 import com.framework.app.presenter.MainPresenter;
-import com.framework.app.utils.LocationUtils;
-import com.framework.app.utils.LogUtil;
 
 import butterknife.BindView;
 
-public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedChangeListener {
+public class MainActivity extends BaseActivity<BaseView, MainPresenter> implements RadioGroup.OnCheckedChangeListener {
 
     @BindView(R.id.radio_home)
     RadioButton radioHome;
     @BindView(R.id.main_group)
     RadioGroup mainGroup;
     private long exitTime = 0;
-    private MainContract.Presenter mPresenter;
+
+    @Override
+    public MainPresenter creatPresenter() {
+        return new MainPresenter();
+    }
 
     @Override
     public int getLayoutId() {
         return R.layout.activity_main;
     }
 
-    @Override
-    protected void initPresenter() {
-        mPresenter = new MainPresenter();
-    }
 
     @Override
     protected void initData() {

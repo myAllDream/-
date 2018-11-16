@@ -11,6 +11,7 @@ import com.framework.app.activity.AddBillActivity;
 import com.framework.app.adapter.AddBillRecycleAdapter;
 import com.framework.app.base.BaseFragment;
 import com.framework.app.base.BaseLazyFragment;
+import com.framework.app.base.BasePresenter;
 import com.framework.app.bean.PlatformBean;
 import com.framework.app.contract.AddBillFragmentContract;
 import com.framework.app.presenter.AddBillPresenter;
@@ -25,7 +26,7 @@ import butterknife.BindView;
  * Created by admin on 2018/2/26.
  */
 
-public class AddBillFragment extends BaseLazyFragment implements AddBillFragmentContract.View {
+public class AddBillFragment extends BaseLazyFragment<AddBillFragmentContract,AddBillPresenter> implements AddBillFragmentContract{
 
     @BindView(R.id.bill_empty)
     LinearLayout billEmpty;
@@ -33,7 +34,6 @@ public class AddBillFragment extends BaseLazyFragment implements AddBillFragment
     RecyclerView addBillRecy;
 
     private AddBillRecycleAdapter mAdapter;
-    private AddBillFragmentContract.Presenter mPresenter;
     private List<PlatformBean.DataBean> data;
     private int position=10;
 
@@ -46,16 +46,14 @@ public class AddBillFragment extends BaseLazyFragment implements AddBillFragment
     }
 
     @Override
+    protected AddBillPresenter creatPresenter() {
+        return new AddBillPresenter(getActivity());
+    }
+
+    @Override
     protected LinearLayout getLinearLayout() {
         return null;
     }
-
-
-    @Override
-    protected void initPresenter() {
-        mPresenter = new AddBillPresenter((AddBillActivity) getActivity(),this);
-    }
-
     @Override
     protected void initData() {
         position = getArguments().getInt("position");
@@ -84,8 +82,6 @@ public class AddBillFragment extends BaseLazyFragment implements AddBillFragment
         }
     }
 
-
-    @Override
     public void getPlatformsSuccess(PlatformBean platformBean) {
         if (platformBean.getData() != null && platformBean.getData() != null && platformBean.getData().size() > 0) {
             billEmpty.setVisibility(View.GONE);
@@ -106,6 +102,5 @@ public class AddBillFragment extends BaseLazyFragment implements AddBillFragment
     public void onResume() {
         super.onResume();
     }
-
 
 }

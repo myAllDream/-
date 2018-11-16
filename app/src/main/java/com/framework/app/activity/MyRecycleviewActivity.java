@@ -10,17 +10,17 @@ import android.widget.LinearLayout;
 import com.framework.app.R;
 import com.framework.app.adapter.PersonViewHolder;
 import com.framework.app.base.BaseActivity;
+import com.framework.app.base.BasePresenter;
+import com.framework.app.base.BaseView;
 import com.framework.app.bean.DataProvider;
 import com.framework.app.bean.Person;
-import com.framework.app.contract.HomeFragMentContract;
 import com.framework.app.pulltorefresh.BaseViewHolder;
-import com.framework.app.pulltorefresh.DefaultEventDelegate;
 import com.framework.app.pulltorefresh.RecyclerArrayAdapter;
 import com.framework.app.pulltorefresh.RecycleviewRefreshView;
 
 import butterknife.BindView;
 
-public class MyRecycleviewActivity extends BaseActivity implements SwipeRefreshLayout.OnRefreshListener{
+public class MyRecycleviewActivity extends BaseActivity<BaseView, BasePresenter<BaseView>> implements SwipeRefreshLayout.OnRefreshListener {
 
 
     @BindView(R.id.recyclerView)
@@ -32,14 +32,15 @@ public class MyRecycleviewActivity extends BaseActivity implements SwipeRefreshL
     private int page = 0;
 
     @Override
+    public BasePresenter<BaseView> creatPresenter() {
+        return null;
+    }
+
+    @Override
     public int getLayoutId() {
         return R.layout.activity_recycleview;
     }
 
-    @Override
-    protected void initPresenter() {
-
-    }
 
     @Override
     protected void initData() {
@@ -47,7 +48,7 @@ public class MyRecycleviewActivity extends BaseActivity implements SwipeRefreshL
         recyclerView.setLayoutManager(layoutManager);
 
 
-        recyclerView.setAdapterWithProgress(adapter = new RecyclerArrayAdapter<Person>(this,recyclerView.getSwipeToRefresh()) {
+        recyclerView.setAdapterWithProgress(adapter = new RecyclerArrayAdapter<Person>(this, recyclerView.getSwipeToRefresh()) {
             @Override
             public BaseViewHolder OnCreateViewHolder(ViewGroup parent, int viewType) {
                 return new PersonViewHolder(parent);
@@ -56,11 +57,11 @@ public class MyRecycleviewActivity extends BaseActivity implements SwipeRefreshL
         adapter.setMore(R.layout.view_more, new RecyclerArrayAdapter.OnLoadMoreListener() {
             @Override
             public void onLoadMore() {
-                if(recyclerView.getSwipeToRefresh().isRefreshing()){
-                    layoutManager.findViewByPosition(adapter.getItemCount()-1).setVisibility(View.GONE);
+                if (recyclerView.getSwipeToRefresh().isRefreshing()) {
+                    layoutManager.findViewByPosition(adapter.getItemCount() - 1).setVisibility(View.GONE);
                     return;
-                }else{
-                    layoutManager.findViewByPosition(adapter.getItemCount()-1).setVisibility(View.VISIBLE);
+                } else {
+                    layoutManager.findViewByPosition(adapter.getItemCount() - 1).setVisibility(View.VISIBLE);
 
                 }
                 handler.postDelayed(new Runnable() {
@@ -98,11 +99,11 @@ public class MyRecycleviewActivity extends BaseActivity implements SwipeRefreshL
         adapter.setError(R.layout.view_error, new RecyclerArrayAdapter.OnErrorListener() {
             @Override
             public void onErrorShow() {
-                if(recyclerView.getSwipeToRefresh().isRefreshing()){
-                    layoutManager.findViewByPosition(adapter.getItemCount()-1).setVisibility(View.GONE);
+                if (recyclerView.getSwipeToRefresh().isRefreshing()) {
+                    layoutManager.findViewByPosition(adapter.getItemCount() - 1).setVisibility(View.GONE);
                     return;
-                }else{
-                    layoutManager.findViewByPosition(adapter.getItemCount()-1).setVisibility(View.VISIBLE);
+                } else {
+                    layoutManager.findViewByPosition(adapter.getItemCount() - 1).setVisibility(View.VISIBLE);
 
                 }
                 adapter.resumeMore();
@@ -135,7 +136,7 @@ public class MyRecycleviewActivity extends BaseActivity implements SwipeRefreshL
                     return;
                 }*/
                 adapter.addAll(DataProvider.getPersonList(page));
-                page=1;
+                page = 1;
             }
         }, 2000);
     }

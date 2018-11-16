@@ -1,25 +1,19 @@
 package com.framework.app.activity;
 
-import android.content.DialogInterface;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
-import android.text.method.KeyListener;
-import android.view.KeyEvent;
 import android.widget.LinearLayout;
-
 
 import com.framework.app.R;
 import com.framework.app.adapter.AddBillFragmentAdapter;
 import com.framework.app.base.BaseActivity;
-import com.framework.app.fragment.AddBillFragment;
-import com.framework.app.utils.LogUtil;
-import com.framework.app.utils.ToastUtils;
+import com.framework.app.base.BasePresenter;
+import com.framework.app.base.BaseView;
 
 import butterknife.BindView;
-import butterknife.OnClick;
 import io.reactivex.disposables.CompositeDisposable;
 
-public class AddBillActivity extends BaseActivity {
+public class AddBillActivity extends BaseActivity<BaseView, BasePresenter<BaseView>> {
     @BindView(R.id.top_ll)
     LinearLayout view;
     @BindView(R.id.add_bill_tab)
@@ -32,13 +26,13 @@ public class AddBillActivity extends BaseActivity {
     private AddBillFragmentAdapter mAdapter;
 
     @Override
-    public int getLayoutId() {
-        return R.layout.activity_add_bill;
+    public BasePresenter creatPresenter() {
+        return null;
     }
 
     @Override
-    protected void initPresenter() {
-
+    public int getLayoutId() {
+        return R.layout.activity_add_bill;
     }
 
     @Override
@@ -49,7 +43,6 @@ public class AddBillActivity extends BaseActivity {
         addBillVp.setOffscreenPageLimit(4);
 
         addBillTab.setupWithViewPager(addBillVp);
-
 
 
     }

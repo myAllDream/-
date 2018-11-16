@@ -8,12 +8,14 @@ import android.widget.LinearLayout;
 import com.framework.app.R;
 import com.framework.app.adapter.SimpleFragmentPagerAdapter;
 import com.framework.app.base.BaseActivity;
+import com.framework.app.base.BasePresenter;
+import com.framework.app.base.BaseView;
 import com.framework.app.fragment.OneFragment;
 import com.framework.app.fragment.TwoFragment;
 
 import java.util.ArrayList;
 
-public class ProductDetailActivity extends BaseActivity {
+public class ProductDetailActivity extends BaseActivity<BaseView,BasePresenter<BaseView>> {
 
     private ArrayList<Fragment> list_fragment = new ArrayList<>();                                //定义要装fragment的列表
     private ArrayList<String> list_title = new ArrayList<>();                                //定义要装fragment的列表
@@ -28,13 +30,13 @@ public class ProductDetailActivity extends BaseActivity {
     private TabLayout tabLayout;
 
     @Override
-    public int getLayoutId() {
-        return R.layout.activity_product_detail;
+    public BasePresenter<BaseView> creatPresenter() {
+        return null;
     }
 
     @Override
-    protected void initPresenter() {
-
+    public int getLayoutId() {
+        return R.layout.activity_product_detail;
     }
 
     @Override

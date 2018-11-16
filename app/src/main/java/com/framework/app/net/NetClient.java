@@ -39,9 +39,11 @@ public class NetClient {
         return sClient;
     }
 
-    public Retrofit net() {
-        return mRetrofit;
+    public ApiService net() {
+        return mRetrofit.create(ApiService.class);
     }
+
+
 
 
     private OkHttpClient getHttpClient() {

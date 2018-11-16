@@ -1,12 +1,15 @@
 package com.framework.app.net;
 
 import android.app.Activity;
+import android.content.Context;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.text.TextUtils;
 
 import com.framework.app.MyApp;
 import com.framework.app.activity.LoginActivity;
 import com.framework.app.base.BaseView;
 import com.framework.app.bean.BaseResponseBean;
+import com.framework.app.utils.LoadingUtils;
 import com.framework.app.utils.ToastUtils;
 import com.google.gson.JsonParseException;
 
@@ -34,24 +37,24 @@ public abstract class SimpleSubscriber<T> implements Observer<T> {
     private BaseView mBaseView = null;
     private String loadMessage = null;
     private Disposable mDisposable;
-    private SwipeRefreshLayout mSwipeRefreshLayout;
+    private LoadingUtils mUtils;
 
     public SimpleSubscriber() {
 
     }
 
-    public SimpleSubscriber(SwipeRefreshLayout swipeRefreshLayout) {
-        mSwipeRefreshLayout = swipeRefreshLayout;
+    public SimpleSubscriber(BaseView baseView, Context context) {
+        this.mBaseView = baseView;
+        mUtils=new LoadingUtils(context);
+        mUtils.show();
     }
 
-    public SimpleSubscriber(BaseView baseView) {
+    public SimpleSubscriber(BaseView baseView, Context context, String message) {
         this.mBaseView = baseView;
+        mUtils=new LoadingUtils(context);
+        mUtils.show(message);
     }
 
-    public SimpleSubscriber(BaseView baseView, String message) {
-        this.mBaseView = baseView;
-        loadMessage = message;
-    }
 
     @Override
     public void onSubscribe(Disposable d) {
@@ -61,8 +64,11 @@ public abstract class SimpleSubscriber<T> implements Observer<T> {
     @Override
     public void onNext(T t) {
 
-        if (mSwipeRefreshLayout != null) {
-            mSwipeRefreshLayout.setRefreshing(false);
+        if (mBaseView.getBaseView()==null){
+            return;
+        }
+        if (mUtils != null) {
+            mUtils.dismiss();
         }
         if (t != null) {
             if (t instanceof BaseResponseBean) {
@@ -86,15 +92,15 @@ public abstract class SimpleSubscriber<T> implements Observer<T> {
                 success(t);
             }
         }
-        if (mBaseView != null) {
-            mBaseView.dismissDialog();
-        }
     }
 
     @Override
     public void onError(Throwable t) {
-        if (mBaseView != null) {
-            mBaseView.dismissDialog();
+        if (mBaseView.getBaseView()==null){
+            return;
+        }
+        if (mUtils != null) {
+            mUtils.dismiss();
         }
         if (t instanceof SocketTimeoutException || t instanceof InterruptedIOException) {
             error("链接超时");

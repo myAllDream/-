@@ -2,7 +2,10 @@ package com.framework.app.presenter;
 
 
 
+import android.content.Context;
+
 import com.framework.app.activity.AddBillActivity;
+import com.framework.app.base.BasePresenter;
 import com.framework.app.bean.PlatformBean;
 import com.framework.app.contract.AddBillFragmentContract;
 import com.framework.app.net.ApiService;
@@ -19,27 +22,23 @@ import io.reactivex.schedulers.Schedulers;
  * Created by admin on 2018/3/1.
  */
 
-public class AddBillPresenter implements AddBillFragmentContract.Presenter{
+public class AddBillPresenter extends BasePresenter<AddBillFragmentContract>{
 
-    private AddBillFragmentContract.View mView;
-    private ApiService mApiService;
-    private AddBillActivity mActivity;
-    public AddBillPresenter(AddBillActivity mActivity,AddBillFragmentContract.View mView){
+    private Context mActivity;
+    public AddBillPresenter(Context mActivity){
         this.mActivity=mActivity;
-        this.mView=mView;
-        mApiService= NetClient.getInstance().net().create(ApiService.class);
     }
-    @Override
+
     public void getPlatforms(String cityCode) {
-        mView.showLoading("");
-        mApiService.getPlatforms("1","1")
+
+        NetClient.getInstance().net().getPlatforms("1","1")
                 .unsubscribeOn(Schedulers.io())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new SimpleSubscriber<PlatformBean>(mView) {
+                .subscribe(new SimpleSubscriber<PlatformBean>(mViewRf.get(),mActivity) {
                     @Override
                     public void success(PlatformBean platformBean) {
-                        mView.getPlatformsSuccess(platformBean);
+                        mViewRf.get().getPlatformsSuccess(platformBean);
                     }
 
                     @Override
@@ -50,7 +49,7 @@ public class AddBillPresenter implements AddBillFragmentContract.Presenter{
 
                     @Override
                     public void onSubscribe(Disposable d) {
-                        mView.addDisposed(d);
+                        mViewRf.get().addDisposed(d);
                     }
                 });
     }

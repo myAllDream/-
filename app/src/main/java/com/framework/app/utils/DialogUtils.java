@@ -108,6 +108,7 @@ public class DialogUtils extends DialogFragment {
     }
 
     public void showDialog(FragmentManager fragmentManager){
+        if (mDialog!=null && !mDialog.isAdded() && !mDialog.isRemoving())
         mDialog.show(fragmentManager,DialogUtils.class.getName());
     }
 
@@ -117,6 +118,7 @@ public class DialogUtils extends DialogFragment {
         if (mUnbinder != null) {
             mUnbinder.unbind();
         }
+        mDialog=null;
     }
 
     @OnClick({R.id.negative, R.id.positive})

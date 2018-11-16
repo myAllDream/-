@@ -10,6 +10,8 @@ import com.framework.app.activity.AddBillActivity;
 import com.framework.app.activity.MyRecycleviewActivity;
 import com.framework.app.activity.ProductDetailActivity;
 import com.framework.app.base.BaseFragment;
+import com.framework.app.base.BasePresenter;
+import com.framework.app.base.BaseView;
 import com.framework.app.keyboard.Callback;
 import com.framework.app.keyboard.PasswordKeypad;
 import com.framework.app.utils.ToastUtils;
@@ -21,7 +23,7 @@ import butterknife.OnClick;
  * Created by admin on 2018/3/19.
  */
 
-public class AccountFragment extends BaseFragment {
+public class AccountFragment extends BaseFragment<BaseView,BasePresenter<BaseView>> {
 
     @BindView(R.id.top_ll)
     LinearLayout view;
@@ -34,14 +36,15 @@ public class AccountFragment extends BaseFragment {
     }
 
     @Override
+    protected BasePresenter<BaseView> creatPresenter() {
+        return null;
+    }
+
+    @Override
     protected LinearLayout getLinearLayout() {
         return view;
     }
 
-    @Override
-    protected void initPresenter() {
-
-    }
 
     @Override
     protected void initData() {

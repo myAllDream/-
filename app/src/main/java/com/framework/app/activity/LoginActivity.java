@@ -6,6 +6,7 @@ import android.widget.TextView;
 
 import com.framework.app.R;
 import com.framework.app.base.BaseActivity;
+import com.framework.app.base.BasePresenter;
 import com.framework.app.contract.LoginContract;
 import com.framework.app.keyboard.MyRectKeyBoard;
 import com.framework.app.keyboard.PasswordKeyboard;
@@ -17,7 +18,7 @@ import butterknife.BindView;
 import io.reactivex.disposables.Disposable;
 
 
-public class LoginActivity extends BaseActivity implements LoginContract.View ,MyRectKeyBoard.OnPasswordInputListener {
+public class LoginActivity extends BaseActivity<LoginContract,BasePresenter<LoginContract>> implements MyRectKeyBoard.OnPasswordInputListener {
 
     @BindView(R.id.top_ll)
     LinearLayout loginTop;
@@ -27,18 +28,20 @@ public class LoginActivity extends BaseActivity implements LoginContract.View ,M
     TextView tv;
 
     @Override
+    public BasePresenter<LoginContract> creatPresenter() {
+        return null;
+    }
+
+    @Override
     public int getLayoutId() {
         return R.layout.activity_login;
     }
 
-    @Override
-    protected void initPresenter() {
-        StatusBar.setBarColor(this, loginTop, Color.parseColor("#999999"));
-    }
 
     @Override
     protected void initData() {
         //showDialogd();
+        StatusBar.setBarColor(this, loginTop, Color.parseColor("#999999"));
         input.setOnPasswordInputListener(this);
     }
 

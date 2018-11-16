@@ -1,6 +1,8 @@
 package com.framework.app.presenter;
 
 import com.framework.app.R;
+import com.framework.app.base.BasePresenter;
+import com.framework.app.base.BaseView;
 import com.framework.app.contract.HomeFragMentContract;
 import com.framework.app.view.GlideImageLoader;
 import com.youth.banner.Banner;
@@ -14,16 +16,15 @@ import java.util.List;
  * Created by admin on 2018/1/3.
  */
 
-public class HomeFragmentPresenter implements HomeFragMentContract.Presenter{
+public class HomeFragmentPresenter extends BasePresenter<HomeFragMentContract>{
 
-    private HomeFragMentContract.View mView;
-    public HomeFragmentPresenter(HomeFragMentContract.View view) {
-        mView=view;
+
+    public HomeFragmentPresenter() {
+
     }
 
-    @Override
     public void startBanner() {
-        Banner banner=mView.getBanner();
+        Banner banner= mViewRf.get().getBanner();
 
         List<Integer> images=new ArrayList<>();
         images.add(R.mipmap.delete_home);

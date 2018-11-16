@@ -5,6 +5,8 @@ import android.widget.TextView;
 
 import com.framework.app.R;
 import com.framework.app.base.BaseFragment;
+import com.framework.app.base.BasePresenter;
+import com.framework.app.base.BaseView;
 
 import butterknife.BindView;
 
@@ -12,7 +14,7 @@ import butterknife.BindView;
  * Created by admin on 2018/3/19.
  */
 
-public class FinanceFragment extends BaseFragment {
+public class FinanceFragment extends BaseFragment<BaseView,BasePresenter<BaseView>> {
 
     @BindView(R.id.top_ll)
     LinearLayout view;
@@ -25,14 +27,15 @@ public class FinanceFragment extends BaseFragment {
     }
 
     @Override
+    protected BasePresenter<BaseView> creatPresenter() {
+        return null;
+    }
+
+    @Override
     protected LinearLayout getLinearLayout() {
         return view;
     }
 
-    @Override
-    protected void initPresenter() {
-
-    }
 
     @Override
     protected void initData() {

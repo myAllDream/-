@@ -2,6 +2,7 @@ package com.framework.app.base;
 
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
+import com.framework.app.R;
 import com.framework.app.utils.LoadingUtils;
 import com.framework.app.utils.StatusBar;
 
@@ -23,10 +25,10 @@ import io.reactivex.disposables.Disposable;
  * Created by admin on 2017/12/20.
  */
 
-public abstract class BaseFragment extends Fragment {
+public abstract class BaseFragment<V,T extends BasePresenter<V>> extends Fragment {
 
     private Unbinder mUnbinder;
-    private LoadingUtils mLoading;
+    protected T mPresenter;
     private CompositeDisposable mDisposable;
 
     @Nullable
@@ -46,13 +48,22 @@ public abstract class BaseFragment extends Fragment {
         if(mDisposable==null){
             mDisposable=new CompositeDisposable();
         }
+
+        mPresenter=creatPresenter();
+        if (mPresenter!=null){
+            mPresenter.attachView((V) this);
+        }
         initData();
-        initPresenter();
+    }
+
+    protected abstract T creatPresenter();
+
+    public BaseView getBaseView() {
+        return (BaseView) mPresenter.mViewRf.get();
     }
 
     protected abstract LinearLayout getLinearLayout();
 
-    protected abstract void initPresenter();
 
     protected abstract void initData();
 
@@ -64,32 +75,23 @@ public abstract class BaseFragment extends Fragment {
         if(mUnbinder!=null){
             mUnbinder.unbind();
         }
+        if (mPresenter!=null){
+            mPresenter.detachView();
+        }
+        mPresenter=null;
     }
 
-    public Dialog showLoading(String message){
-        if(mLoading==null){
-            mLoading=new LoadingUtils(getActivity());
-            mLoading.setOnKeyListener(new DialogInterface.OnKeyListener() {
-                @Override
-                public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
-                    if(keyCode==KeyEvent.KEYCODE_BACK){
-                        mDisposable.dispose();
-                    }
-                    return false;
-                }
-            });
-        }
-        mLoading.show(message);
-        return mLoading;
-    }
-
-    public void dismissDialog(){
-        if(mLoading!=null && mLoading.isShowing()){
-            mLoading.dismiss();
-        }
-    }
 
     public void addDisposed(Disposable disposable){
         mDisposable.add(disposable);
+    }
+
+    @Override
+    public void startActivity(Intent intent) {
+        super.startActivity(intent);
+        enterActivityAnimation();
+    }
+    public void enterActivityAnimation() {
+        getActivity().overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
     }
 }

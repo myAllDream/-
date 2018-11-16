@@ -9,8 +9,7 @@ import io.reactivex.disposables.Disposable;
  */
 
 public interface BaseView {
-    Dialog showLoading(String message);
-    void dismissDialog();
+    BaseView getBaseView();
     void addDisposed(Disposable disposable);
 
 }
