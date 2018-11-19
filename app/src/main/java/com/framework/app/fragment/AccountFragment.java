@@ -7,7 +7,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.framework.app.R;
 import com.framework.app.activity.AddBillActivity;
-import com.framework.app.activity.MyRecycleviewActivity;
 import com.framework.app.activity.ProductDetailActivity;
 import com.framework.app.base.BaseFragment;
 import com.framework.app.base.BasePresenter;
@@ -72,7 +71,7 @@ public class AccountFragment extends BaseFragment<BaseView,BasePresenter<BaseVie
                 startActivity(new Intent(getActivity(), AddBillActivity.class));
                 break;
             case R.id.fresh:
-                startActivity(new Intent(getActivity(), MyRecycleviewActivity.class));
+
                 break;
         }
 

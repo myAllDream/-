@@ -1,12 +1,6 @@
-package com.framework.app.bean;
-
+package com.framework.app.base;
 
 import java.io.Serializable;
-
-/**
- * Created by ouzy on 2018/2/28.
- * desc:BaseResponse
- */
 
 public class BaseResponseBean implements Serializable {
 
@@ -15,14 +9,14 @@ public class BaseResponseBean implements Serializable {
      * msg : 请求成功
      */
 
-    private int code;
+    private String code;
     private String msg;
 
-    public int getCode() {
+    public String getCode() {
         return code;
     }
 
-    public void setCode(int code) {
+    public void setCode(String code) {
         this.code = code;
     }
 

@@ -1,5 +1,6 @@
 package com.framework.app.net;
 
+import java.net.Proxy;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
@@ -23,7 +24,7 @@ public class NetClient {
         mRetrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .client(getHttpClient())
-                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(MyConverterFavtory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build();
     }
@@ -48,6 +49,7 @@ public class NetClient {
 
     private OkHttpClient getHttpClient() {
         OkHttpClient.Builder okHttpClient = new OkHttpClient.Builder();
+        okHttpClient.proxy(Proxy.NO_PROXY);
         okHttpClient.connectTimeout(TIME_OUT, TimeUnit.SECONDS)
                 .readTimeout(TIME_OUT, TimeUnit.SECONDS);
 

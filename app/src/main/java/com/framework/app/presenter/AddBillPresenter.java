@@ -1,14 +1,11 @@
 package com.framework.app.presenter;
 
 
-
 import android.content.Context;
 
-import com.framework.app.activity.AddBillActivity;
 import com.framework.app.base.BasePresenter;
 import com.framework.app.bean.PlatformBean;
 import com.framework.app.contract.AddBillFragmentContract;
-import com.framework.app.net.ApiService;
 import com.framework.app.net.NetClient;
 import com.framework.app.net.SimpleSubscriber;
 import com.framework.app.utils.LogUtil;
@@ -22,20 +19,20 @@ import io.reactivex.schedulers.Schedulers;
  * Created by admin on 2018/3/1.
  */
 
-public class AddBillPresenter extends BasePresenter<AddBillFragmentContract>{
+public class AddBillPresenter extends BasePresenter<AddBillFragmentContract> {
 
     private Context mActivity;
-    public AddBillPresenter(Context mActivity){
-        this.mActivity=mActivity;
+
+    public AddBillPresenter(Context mActivity) {
+        this.mActivity = mActivity;
     }
 
     public void getPlatforms(String cityCode) {
 
-        NetClient.getInstance().net().getPlatforms("1","1")
-                .unsubscribeOn(Schedulers.io())
+        NetClient.getInstance().net().getPlatforms("1", "1")
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new SimpleSubscriber<PlatformBean>(mViewRf.get(),mActivity) {
+                .subscribe(new SimpleSubscriber<PlatformBean>(mViewRf.get(), mActivity) {
                     @Override
                     public void success(PlatformBean platformBean) {
                         mViewRf.get().getPlatformsSuccess(platformBean);

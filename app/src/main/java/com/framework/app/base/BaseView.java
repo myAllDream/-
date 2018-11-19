@@ -1,7 +1,5 @@
 package com.framework.app.base;
 
-import android.app.Dialog;
-
 import io.reactivex.disposables.Disposable;
 
 /**
@@ -10,6 +8,7 @@ import io.reactivex.disposables.Disposable;
 
 public interface BaseView {
     BaseView getBaseView();
+
     void addDisposed(Disposable disposable);
 
 }

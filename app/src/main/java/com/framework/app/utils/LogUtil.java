@@ -10,6 +10,7 @@ public class LogUtil {
     //日志打印控制开关
     private static final boolean isPrint = true;
     private static final String TAG = "love";
+    private static final String TAGMSG = "lovely";
 
     /**
      * 单一信息打印
@@ -19,6 +20,16 @@ public class LogUtil {
     public static void i(String message) {
         if (isPrint) {
             Log.i(TAG, message);
+        }
+    }
+    /**
+     * 单一信息打印
+     *
+     * @param message
+     */
+    public static void iMsg(String message) {
+        if (isPrint) {
+            Log.i(TAGMSG, message);
         }
     }
 

@@ -1,8 +1,6 @@
 package com.framework.app.net;
 
 
-import com.framework.app.MyApp;
-
 import java.io.IOException;
 import java.nio.charset.Charset;
 
@@ -10,10 +8,6 @@ import okhttp3.Interceptor;
 import okhttp3.Request;
 import okhttp3.Response;
 
-/**
- * Created by ouzy on 2018/2/27.
- * desc:请求头信息
- */
 
 public class HeaderInterceptor implements Interceptor {
     private final Charset UTF8 = Charset.forName("UTF-8");

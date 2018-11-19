@@ -26,40 +26,45 @@ public class LoggingInterceptor implements Interceptor {
 
     @Override
     public Response intercept(Chain chain) throws IOException {
-
         Request request = chain.request();
-        FormBody requestBody = (FormBody) request.body();
-        String body = null;
-        if(requestBody != null) {
-            Buffer buffer = new Buffer();
-            requestBody.writeTo(buffer);
+        Response response= chain.proceed(request);
+        try {
+            FormBody requestBody = (FormBody) request.body();
+            String body = null;
+            if(requestBody != null) {
+                Buffer buffer = new Buffer();
+                requestBody.writeTo(buffer);
+                Charset charset = UTF8;
+                MediaType contentType = requestBody.contentType();
+                if (contentType != null) {
+                    charset = contentType.charset(UTF8);
+                }
+                body = buffer.readString(charset);
+            }
+
+            LogUtil.i("请求："+"\n url" + request.url()+ "\n body   " + body);
+
+
+            ResponseBody responseBody = response.body();
+            String rBody = null;
+            BufferedSource source = responseBody.source();
+            source.request(Long.MAX_VALUE); // Buffer the entire body.
+            Buffer buffer = source.buffer();
             Charset charset = UTF8;
-            MediaType contentType = requestBody.contentType();
+            MediaType contentType = responseBody.contentType();
             if (contentType != null) {
-                charset = contentType.charset(UTF8);
+                try {
+                    charset = contentType.charset(UTF8);
+                } catch (UnsupportedCharsetException e) {
+                    e.printStackTrace();
+                }
             }
-            body = buffer.readString(charset);
+            rBody = buffer.clone().readString(charset);
+            LogUtil.i("收到响应\n"+response.request().url()+"\n"+rBody);
+        }catch (Exception e){
+
         }
 
-        LogUtil.i("请求："+"\n url" + request.url()+ "\n body   " + body);
-
-        Response response = chain.proceed(request);
-        ResponseBody responseBody = response.body();
-        String rBody = null;
-        BufferedSource source = responseBody.source();
-        source.request(Long.MAX_VALUE); // Buffer the entire body.
-        Buffer buffer = source.buffer();
-        Charset charset = UTF8;
-        MediaType contentType = responseBody.contentType();
-        if (contentType != null) {
-            try {
-                charset = contentType.charset(UTF8);
-            } catch (UnsupportedCharsetException e) {
-                e.printStackTrace();
-            }
-        }
-        rBody = buffer.clone().readString(charset);
-        LogUtil.i("收到响应\n"+response.request().url()+"\n"+rBody);
         return response;
     }
 }

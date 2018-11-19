@@ -1,5 +1,7 @@
 package com.framework.app.bean;
 
+import com.framework.app.base.BaseResponseBean;
+
 import java.util.List;
 
 /**

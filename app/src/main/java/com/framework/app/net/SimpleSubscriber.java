@@ -1,18 +1,13 @@
 package com.framework.app.net;
 
-import android.app.Activity;
 import android.content.Context;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.text.TextUtils;
+import android.content.DialogInterface;
+import android.view.KeyEvent;
 
-import com.framework.app.MyApp;
-import com.framework.app.activity.LoginActivity;
 import com.framework.app.base.BaseView;
-import com.framework.app.bean.BaseResponseBean;
 import com.framework.app.utils.LoadingUtils;
-import com.framework.app.utils.ToastUtils;
+import com.framework.app.utils.LogUtil;
 import com.google.gson.JsonParseException;
-
 
 import org.json.JSONException;
 
@@ -21,16 +16,10 @@ import java.net.ConnectException;
 import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
 import java.text.ParseException;
-import java.util.ArrayList;
 
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 import retrofit2.HttpException;
-
-/**
- * Created by ouzy on 2018/1/29.
- * desc:Observer
- */
 
 public abstract class SimpleSubscriber<T> implements Observer<T> {
 
@@ -39,64 +28,63 @@ public abstract class SimpleSubscriber<T> implements Observer<T> {
     private Disposable mDisposable;
     private LoadingUtils mUtils;
 
-    public SimpleSubscriber() {
+    private SimpleSubscriber() {
 
     }
 
     public SimpleSubscriber(BaseView baseView, Context context) {
         this.mBaseView = baseView;
-        mUtils=new LoadingUtils(context);
-        mUtils.show();
+        mUtils = new LoadingUtils(context);
     }
 
     public SimpleSubscriber(BaseView baseView, Context context, String message) {
         this.mBaseView = baseView;
-        mUtils=new LoadingUtils(context);
-        mUtils.show(message);
+        mUtils = new LoadingUtils(context);
+        loadMessage = message;
     }
 
 
     @Override
     public void onSubscribe(Disposable d) {
+        LogUtil.iMsg("---------------------");
         mDisposable = d;
+        if (mUtils != null && !mUtils.isShowing()) {
+            if (loadMessage != null) {
+                mUtils.show(loadMessage);
+            } else {
+                mUtils.show("正在请求...");
+            }
+        }
+        if (mUtils != null) {
+            LogUtil.iMsg("----------11111-----------");
+            mUtils.setOnKeyListener(new DialogInterface.OnKeyListener() {
+                @Override
+                public boolean onKey(DialogInterface dialogInterface, int i, KeyEvent keyEvent) {
+
+                    LogUtil.iMsg("---------22222------------");
+                    return false;
+                }
+            });
+        }
     }
 
     @Override
     public void onNext(T t) {
 
-        if (mBaseView.getBaseView()==null){
+        if (mBaseView.getBaseView() == null) {
             return;
         }
-        if (mUtils != null) {
-            mUtils.dismiss();
-        }
         if (t != null) {
-            if (t instanceof BaseResponseBean) {
-                int code = ((BaseResponseBean) t).getCode();
-                if (code == 200) {
-                    success(t);
-                } else if (code == 2016) {
-                    //跳转到登录界面
-                    ArrayList<Activity> activityList = MyApp.getInstance().activityList;
-                    ToastUtils.show("请重新登录");
-                    if (activityList != null && activityList.size() > 0) {
-                        //TurnToActivityUtils.turnToActivity(activityList.get(activityList.size() - 1), LoginActivity.class);
-                    } else {
-                        //TurnToActivityUtils.turnToActivity(MyApp.getInstance(), LoginActivity.class);
-                    }
-                    error("登录超时");
-                } else {
-                    error(((BaseResponseBean) t).getMsg());
-                }
-            } else {
-                success(t);
-            }
+            success(t);
         }
+        /*if (mUtils != null && mUtils.isShowing()) {
+            mUtils.dismiss();
+        }*/
     }
 
     @Override
     public void onError(Throwable t) {
-        if (mBaseView.getBaseView()==null){
+        if (mBaseView.getBaseView() == null) {
             return;
         }
         if (mUtils != null) {
@@ -111,7 +99,7 @@ public abstract class SimpleSubscriber<T> implements Observer<T> {
         } else {
             error(t.getMessage());
         }
-        if (mDisposable != null &&!mDisposable.isDisposed()) {
+        if (mDisposable != null && !mDisposable.isDisposed()) {
             mDisposable.dispose();
         }
     }
