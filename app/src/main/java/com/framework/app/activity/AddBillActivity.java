@@ -49,7 +49,7 @@ public class AddBillActivity extends BaseActivity<BaseView, BasePresenter<BaseVi
 
     @Override
     protected LinearLayout getTopView() {
-        return view;
+        return null;
     }
 
 }

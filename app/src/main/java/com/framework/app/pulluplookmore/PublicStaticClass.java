@@ -1,7 +1,7 @@
-package com.framework.app.utils;
+package com.framework.app.pulluplookmore;
 
 /**
- * Created by admin on 2018/3/21.
+ * 继续拖动查看图文详情
  */
 
 public class PublicStaticClass {

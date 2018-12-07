@@ -1,4 +1,4 @@
-package com.framework.app.view;
+package com.framework.app.pulluplookmore;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -9,10 +9,8 @@ import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.widget.Scroller;
 
-import com.framework.app.utils.PublicStaticClass;
-
 /**
- * Created by admin on 2018/3/21.
+ * 继续拖动查看图文详情
  */
 
 public class PullUpToLoadMore extends ViewGroup {

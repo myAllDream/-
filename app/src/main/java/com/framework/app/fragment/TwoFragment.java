@@ -1,21 +1,15 @@
 package com.framework.app.fragment;
 
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.framework.app.R;
 import com.framework.app.base.BaseFragment;
 import com.framework.app.base.BasePresenter;
 import com.framework.app.base.BaseView;
-import com.framework.app.utils.PublicStaticClass;
-import com.framework.app.view.MyScrollView;
+import com.framework.app.pulluplookmore.PublicStaticClass;
+import com.framework.app.pulluplookmore.MyScrollView;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
 
 /**
  * Created by admin on 2018/3/21.

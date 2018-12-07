@@ -1,14 +1,12 @@
-package com.framework.app.view;
+package com.framework.app.pulluplookmore;
 
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.widget.ScrollView;
 
-import com.framework.app.utils.LogUtil;
-
 /**
- * Created by admin on 2018/3/21.
+ * 继续拖动查看图文详情
  */
 
 public class MyScrollView extends ScrollView {

@@ -1,4 +1,4 @@
-<com.framework.app.view.MyScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.framework.app.pulluplookmore.MyScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/twoScrollview"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -34,4 +34,4 @@
             android:layout_height="100dp"
             android:text="我是第二个页面,向上滑动一下试试5" />
     </LinearLayout>
-</com.framework.app.view.MyScrollView>
+</com.framework.app.pulluplookmore.MyScrollView>

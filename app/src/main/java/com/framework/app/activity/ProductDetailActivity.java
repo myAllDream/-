@@ -15,7 +15,7 @@ import com.framework.app.fragment.TwoFragment;
 
 import java.util.ArrayList;
 
-public class ProductDetailActivity extends BaseActivity<BaseView,BasePresenter<BaseView>> {
+public class ProductDetailActivity extends BaseActivity<BaseView, BasePresenter<BaseView>> {
 
     private ArrayList<Fragment> list_fragment = new ArrayList<>();                                //定义要装fragment的列表
     private ArrayList<String> list_title = new ArrayList<>();                                //定义要装fragment的列表
