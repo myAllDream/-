@@ -6,7 +6,6 @@ import android.view.KeyEvent;
 
 import com.framework.app.base.BaseView;
 import com.framework.app.utils.LoadingUtils;
-import com.framework.app.utils.LogUtil;
 import com.google.gson.JsonParseException;
 
 import org.json.JSONException;
@@ -46,7 +45,6 @@ public abstract class SimpleSubscriber<T> implements Observer<T> {
 
     @Override
     public void onSubscribe(Disposable d) {
-        LogUtil.iMsg("---------------------");
         mDisposable = d;
         if (mUtils != null && !mUtils.isShowing()) {
             if (loadMessage != null) {
@@ -56,12 +54,10 @@ public abstract class SimpleSubscriber<T> implements Observer<T> {
             }
         }
         if (mUtils != null) {
-            LogUtil.iMsg("----------11111-----------");
             mUtils.setOnKeyListener(new DialogInterface.OnKeyListener() {
                 @Override
                 public boolean onKey(DialogInterface dialogInterface, int i, KeyEvent keyEvent) {
-
-                    LogUtil.iMsg("---------22222------------");
+                    //此处可以监听按返回键dialog消失
                     return false;
                 }
             });
@@ -77,9 +73,9 @@ public abstract class SimpleSubscriber<T> implements Observer<T> {
         if (t != null) {
             success(t);
         }
-        /*if (mUtils != null && mUtils.isShowing()) {
+        if (mUtils != null && mUtils.isShowing()) {
             mUtils.dismiss();
-        }*/
+        }
     }
 
     @Override
@@ -87,7 +83,7 @@ public abstract class SimpleSubscriber<T> implements Observer<T> {
         if (mBaseView.getBaseView() == null) {
             return;
         }
-        if (mUtils != null) {
+        if (mUtils != null&& mUtils.isShowing()) {
             mUtils.dismiss();
         }
         if (t instanceof SocketTimeoutException || t instanceof InterruptedIOException) {

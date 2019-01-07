@@ -8,11 +8,10 @@ import com.framework.app.bean.PlatformBean;
 import com.framework.app.contract.AddBillFragmentContract;
 import com.framework.app.net.NetClient;
 import com.framework.app.net.SimpleSubscriber;
-import com.framework.app.utils.LogUtil;
+import com.framework.app.utils.L;
 import com.framework.app.utils.ToastUtils;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
 /**
@@ -40,13 +39,8 @@ public class AddBillPresenter extends BasePresenter<AddBillFragmentContract> {
 
                     @Override
                     public void error(String errMessage) {
-                        LogUtil.i(errMessage);
+                        L.i(errMessage);
                         ToastUtils.show(errMessage);
-                    }
-
-                    @Override
-                    public void onSubscribe(Disposable d) {
-                        mViewRf.get().addDisposed(d);
                     }
                 });
     }

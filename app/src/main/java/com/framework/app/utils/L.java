@@ -6,7 +6,7 @@ import android.util.Log;
  * 日志操作工具类
  */
 
-public class LogUtil {
+public class L {
     //日志打印控制开关
     private static final boolean isPrint = true;
     private static final String TAG = "love";

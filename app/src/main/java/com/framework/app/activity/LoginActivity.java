@@ -11,11 +11,10 @@ import com.framework.app.contract.LoginContract;
 import com.framework.app.keyboard.MyRectKeyBoard;
 import com.framework.app.keyboard.PasswordKeyboard;
 import com.framework.app.utils.DialogUtils;
-import com.framework.app.utils.LogUtil;
+import com.framework.app.utils.L;
 import com.framework.app.utils.StatusBar;
 
 import butterknife.BindView;
-import io.reactivex.disposables.Disposable;
 
 
 public class LoginActivity extends BaseActivity<LoginContract,BasePresenter<LoginContract>> implements MyRectKeyBoard.OnPasswordInputListener {
@@ -71,7 +70,7 @@ public class LoginActivity extends BaseActivity<LoginContract,BasePresenter<Logi
     StringBuilder builder=new StringBuilder();
     @Override
     public void onInput(String number) {
-        LogUtil.i("----密码---："+number);
+        L.i("----密码---："+number);
 
         if (PasswordKeyboard.DEL.equals(number)) {
             if (builder.length() > 0) {

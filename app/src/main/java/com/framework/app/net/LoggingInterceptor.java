@@ -1,8 +1,6 @@
 package com.framework.app.net;
 
-import android.util.Log;
-
-import com.framework.app.utils.LogUtil;
+import com.framework.app.utils.L;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
@@ -42,7 +40,7 @@ public class LoggingInterceptor implements Interceptor {
                 body = buffer.readString(charset);
             }
 
-            LogUtil.i("请求："+"\n url" + request.url()+ "\n body   " + body);
+            L.i("请求："+"\n url" + request.url()+ "\n body   " + body);
 
 
             ResponseBody responseBody = response.body();
@@ -60,7 +58,7 @@ public class LoggingInterceptor implements Interceptor {
                 }
             }
             rBody = buffer.clone().readString(charset);
-            LogUtil.i("收到响应\n"+response.request().url()+"\n"+rBody);
+            L.i("收到响应\n"+response.request().url()+"\n"+rBody);
         }catch (Exception e){
 
         }

@@ -7,15 +7,11 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import com.framework.app.R;
-import com.framework.app.activity.AddBillActivity;
 import com.framework.app.adapter.AddBillRecycleAdapter;
-import com.framework.app.base.BaseFragment;
 import com.framework.app.base.BaseLazyFragment;
-import com.framework.app.base.BasePresenter;
 import com.framework.app.bean.PlatformBean;
 import com.framework.app.contract.AddBillFragmentContract;
 import com.framework.app.presenter.AddBillPresenter;
-import com.framework.app.utils.LogUtil;
 
 import java.util.ArrayList;
 import java.util.List;
